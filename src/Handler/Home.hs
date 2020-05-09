@@ -18,7 +18,7 @@ getHomeR :: Handler Value
 getHomeR = do
   let response = HomeGetJson "streaming-calc-haskell-yesod"
                              "sycured"
-                             "POST a json to this endpoint"
+                             "GET"
                              ["/bwserver", "/serverusagebw"]
                              "ready"
   returnJson response
