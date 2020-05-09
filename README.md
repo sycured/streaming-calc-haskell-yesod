@@ -1,7 +1,5 @@
 # streaming-calc-haskell-yesod
 
-[![Build Status](https://travis-ci.com/sycured/streaming-calc-haskell-yesod.svg?branch=master)](https://travis-ci.com/sycured/streaming-calc-haskell-yesod)
-
 Bandwidth calculation for streaming server - webservice | Rewrite from my original in Python
 
 ## Compilation
