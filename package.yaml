@@ -93,9 +93,6 @@ executables:
     - -Wpartial-fields
     - -fhide-source-paths
     - -freverse-errors
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
 
     dependencies:
     - streaming-calc-haskell-yesod
