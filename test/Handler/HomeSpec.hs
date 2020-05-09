@@ -14,7 +14,7 @@ spec = withApp $ do
     it "loads the index and checks it looks right" $ do
       get HomeR
       statusIs 200
-      bodyContains "POST a json to this endpoint"
+      bodyContains "ready"
     it "POST not available" $ do
       post HomeR
       statusIs 405
