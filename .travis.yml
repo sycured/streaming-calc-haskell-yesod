@@ -17,10 +17,9 @@ script:
 - docker exec haskell-build sh -c "echo 'en_US.UTF-8 UTF-8' > /etc/locales.gen"
 - docker exec haskell-build sh -c "echo 'LANG=\"en_US.UTF-8\"' > /etc/default/locale"
 - docker exec haskell-build locale-gen
-- docker exec haskell-build dpkg-reconfigure --frontend=noninteractive locales
 - docker exec haskell-build sh -c 'export LC_ALL=en_US.UTF-8'
 - docker exec haskell-build stack --allow-different-user setup
-- docker exec haskell-build stack --allow-different-user build --test
+- docker exec haskell-build sh -c 'LC_ALL=en_US.UTF-8 stack --allow-different-user build --test'
 
 after_script:
 - docker stop haskell-build
