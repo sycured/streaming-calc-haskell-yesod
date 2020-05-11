@@ -4,7 +4,7 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
 -- | Common handler functions.
-module Handler.Common where
+module Handler.Common (getFaviconR, getRobotsR) where
 
 import Data.FileEmbed (embedFile)
 import Import

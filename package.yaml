@@ -6,15 +6,12 @@ dependencies:
 - base >=4.9.1.0 && <5
 - yesod >=1.6 && <1.7
 - yesod-core >=1.6 && <1.7
-- yesod-static >=1.6 && <1.7
-- yesod-form >=1.6 && <1.7
 - classy-prelude >=1.5 && <1.6
 - classy-prelude-conduit >=1.5 && <1.6
 - classy-prelude-yesod >=1.5 && <1.6
 - bytestring >=0.10 && <0.11
 - text >=0.11 && <2.0
 - template-haskell
-- shakespeare >=2.0 && <2.1
 - hjsmin >=0.1 && <0.3
 - monad-control >=0.3 && <1.1
 - wai-extra >=3.0 && <3.1
@@ -93,8 +90,8 @@ executables:
     - -Wpartial-fields
     - -fhide-source-paths
     - -freverse-errors
-    - -optl-static
-    - -optl-pthread
+    # - -optl-static
+    # - -optl-pthread
 
     dependencies:
     - streaming-calc-haskell-yesod
