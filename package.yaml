@@ -90,8 +90,6 @@ executables:
     - -Wpartial-fields
     - -fhide-source-paths
     - -freverse-errors
-    # - -optl-static
-    # - -optl-pthread
 
     dependencies:
     - streaming-calc-haskell-yesod
