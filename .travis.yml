@@ -1,0 +1,23 @@
+language: minimal
+dist: bionic
+
+git:
+  quiet: true
+
+services:
+  - docker
+
+before_script:
+  - echo $githubtoken | docker login -u $githublogin --password-stdin docker.pkg.github.com
+  - docker pull docker.pkg.github.com/sycured/centos-haskell-builder/centos-haskell-builder:latest
+  - docker run -dit --name haskell-build -v $TRAVIS_BUILD_DIR:/home/hsk/to_build -w /home/hsk/to_build docker.pkg.github.com/sycured/centos-haskell-builder/centos-haskell-builder:latest bash
+
+script:
+  - docker exec -u root -w /root haskell-build chown -R hsk /home/hsk/to_build
+  - docker exec -u root -w /root haskell-build dnf install zlib-devel -y
+  - docker exec haskell-build stack setup
+  - docker exec haskell-build stack build --ghc-options='-fPIC -optl-pthread' --test
+
+after_script:
+  - docker logout docker.pkg.github.com
+  - docker stop haskell-build
