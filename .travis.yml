@@ -14,6 +14,9 @@ addons:
       - buildah
       - yum
 
+before_install:
+  - sudo apt-get upgrade -y
+
 before_script:
   - echo $quayiopassword | buildah login -u $quayiouser --password-stdin quay.io
   - echo $githubtoken | buildah login -u $githublogin --password-stdin ghcr.io
