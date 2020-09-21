@@ -3,7 +3,7 @@ set -xe
 
 mkbuild=$(buildah from -v "$TRAVIS_BUILD_DIR":"$mntbuild"/home/hsk/to_build ghcr.io/sycured/centos-haskell-builder:latest)
 mntbuild=$(buildah mount "$mkbuild")
-buildah run --user root "$mkbuild" bash -c "chown -R hsk /home/hsk/to_build && yum install zlib-devel -y"
+buildah run --user root "$mkbuild" bash -c "chown -R hsk /home/hsk/to_build && yum install zlib-devel -y && stack upgrade"
 buildah run "$mkbuild" -- bash -c "cd /home/hsk/to_build && stack setup && stack build --ghc-options='-fPIC -optl-pthread' --test --copy-bins"
 
 mkimg=$(buildah from scratch)
