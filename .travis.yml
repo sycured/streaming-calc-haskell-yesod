@@ -12,6 +12,7 @@ addons:
     update: true
     packages:
       - buildah
+      - yum
 
 before_script:
   - echo $quayiopassword | buildah login -u $quayiouser --password-stdin quay.io
