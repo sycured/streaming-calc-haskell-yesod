@@ -38,5 +38,5 @@ postBwServerR :: Handler Value
 postBwServerR = do
   json_payload <- requireCheckJsonBody :: Handler BwServerJson
   let response = object ["result" .= result]       where
-        result = nblisteners json_payload * bitrate json_payload * 1000 / 1024
+        result = 125 * nblisteners json_payload * bitrate json_payload / 128
   returnJson response

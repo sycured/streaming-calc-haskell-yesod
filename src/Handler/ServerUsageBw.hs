@@ -56,11 +56,8 @@ postServerUsageBwR = do
         result =
           nbdays json_payload
             * nbhours json_payload
-            * 3600
             * bitrate json_payload
-            * 1000
-            / 8
             * nblisteners json_payload
-            / 1024
-            / 1024
+            * 28125
+            / 65536
   returnJson response
