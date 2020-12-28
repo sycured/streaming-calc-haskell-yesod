@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xe
 
-mkbuild=$(buildah from -v "$TRAVIS_BUILD_DIR":"$mntbuild"/home/hsk/to_build ghcr.io/sycured/centos-haskell-builder:latest)
+mkbuild=$(buildah from -v "$TRAVIS_BUILD_DIR":"$mntbuild"/home/hsk/to_build ghcr.io/sycured/oraclelinux-haskell-builder:latest)
 mntbuild=$(buildah mount "$mkbuild")
 buildah run --user root "$mkbuild" bash -c "chown -R hsk /home/hsk/to_build && yum install zlib-devel -y && stack upgrade"
 buildah run "$mkbuild" -- bash -c "cd /home/hsk/to_build && stack setup && stack build --ghc-options='-fPIC -optl-pthread' --test --copy-bins"
@@ -14,7 +14,7 @@ buildah config --port 3000 "$mkimg"
 buildah config --workingdir='/opt' "$mkimg"
 buildah config --cmd '/opt/streaming-calc-haskell-yesod' "$mkimg"
 mntimg=$(buildah mount "$mkimg")
-yum --nogpgcheck --installroot="$mkimg" --repofrompath centos8,http://mirror.centos.org/centos/8/BaseOS/x86_64/os/ --repo=centos8 install glibc-langpack-en gmp zlib -y
+yum --nogpgcheck --installroot="$mkimg" --repofrompath ol8,https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/ --repo=ol8 install glibc-langpack-en gmp zlib -y
 mkdir -p "$mntimg"/opt/config "$mntimg"/opt/static
 cp "$mntbuild"/home/hsk/.local/bin/streaming-calc-haskell-yesod "$mntimg"/opt/
 buildah unmount "$mkimg"
