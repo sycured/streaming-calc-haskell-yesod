@@ -14,7 +14,7 @@ buildah config --port 3000 "$mkimg"
 buildah config --workingdir='/opt' "$mkimg"
 buildah config --cmd '/opt/streaming-calc-haskell-yesod' "$mkimg"
 mntimg=$(buildah mount "$mkimg")
-yum --nogpgcheck --installroot="$mkimg" --repofrompath ol8,https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/ --repo=ol8 install glibc-langpack-en gmp zlib -y
+yum --nogpgcheck --installroot="$mntimg" --repofrompath ol8,https://yum.oracle.com/repo/OracleLinux/OL8/baseos/latest/x86_64/ --repo=ol8 install glibc-langpack-en gmp zlib -y
 mkdir -p "$mntimg"/opt/config "$mntimg"/opt/static
 cp "$mntbuild"/home/hsk/.local/bin/streaming-calc-haskell-yesod "$mntimg"/opt/
 buildah unmount "$mkimg"
